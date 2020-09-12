@@ -93,7 +93,7 @@ When we build(ctrl+shift+b) an core/web application, internally it calls npm sta
       <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     </Target>
     
-At the deployment/publishing application: -    
+At the time of deployment/publishing the application: -    
 
    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
        <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
