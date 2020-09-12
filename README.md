@@ -81,7 +81,7 @@ How could react application build with asp.net core?
 
 When we build(ctrl+shift+b) an core/web application, internally it calls npm start/build/install and all these is configured in your .csproj.
 
-# Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules')"
+# Condition=" '$(Configuration)' == 'Debug' 
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
       <!-- Ensure Node.js is installed -->
