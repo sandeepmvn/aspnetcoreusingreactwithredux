@@ -18,7 +18,9 @@ Configure your new project with,
 Click on create 
 
 Step-3
-Now select the project template as "React Js and Redux" and click on the create. If in case this template is not availabe then go to
+Now select the project template as "React Js and Redux" and click on the create. (Most probably this template is available in visual 2019)  
+
+If in case this template is not availabe then go to
 https://marketplace.visualstudio.com/search?target=VS&category=Templates&vsVersion=&subCategory=ASP.NET&sortBy=Relevance  search for the required template and install.
 
 Step- 4
