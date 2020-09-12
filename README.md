@@ -4,6 +4,8 @@ microsoft documentation:-
 
 https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/react-with-redux?view=aspnetcore-3.1
 
+https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/react?view=aspnetcore-3.1&tabs=visual-studio
+
 
 Step-1 
 Open VS(Visual Studio) 2019 and Select create new project ----> select the asp.net core template or search for asp.net core template ---> click on next
@@ -79,9 +81,7 @@ In Startup.cs
 
 How could react application build with asp.net core?
 
-When we build(ctrl+shift+b) an core/web application, internally it calls npm start/build/install and all these is configured in your .csproj.
-
-# Condition=" '$(Configuration)' == 'Debug' 
+When we build(ctrl+shift+b) an core/web application, internally it calls npm start/build/install and all these is configured in your .csproj.\
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
       <!-- Ensure Node.js is installed -->
@@ -93,9 +93,23 @@ When we build(ctrl+shift+b) an core/web application, internally it calls npm sta
       <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     </Target>
     
-    
+At the deployment/publishing application: -    
 
+   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+       <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+       <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+       <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
 
+       <!-- Include the newly-built files in the publish output -->
+       <ItemGroup>
+         <DistFiles Include="$(SpaRoot)build\**; $(SpaRoot)build-ssr\**" />
+         <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+           <RelativePath>%(DistFiles.Identity)</RelativePath>
+           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+         </ResolvedFileToPublish>
+       </ItemGroup>
+     </Target>
 
 
 
